@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dyala Alahmadieh — Solar &amp; Electrical Design Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2438;
+    --navy-deep:#0A1B2A;
+    --paper:#F6F3EC;
+    --paper-dim:#EDE9DE;
+    --ink:#182028;
+    --amber:#E2A339;
+    --steel:#7C8CA0;
+    --rust:#B8542E;
+    --line: rgba(124,140,160,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem;}
+  .navlinks{display:flex; gap:28px; font-size:0.88rem;}
+  .navlinks a{text-decoration:none; color:var(--navy); position:relative; padding:4px 0;}
+  .navlinks a:hover{color:var(--rust);}
+  @media(max-width:640px){.navlinks{gap:16px; font-size:0.78rem;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--navy);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:110px 0 90px;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-avatar{
+    width:104px; height:104px; border-radius:50%;
+    border:2px solid var(--amber); object-fit:cover;
+    margin-bottom:24px; display:block;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--amber);
+    letter-spacing:0.02em;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.5vw, 4rem);
+    line-height:1.05;
+    max-width:11ch;
+    margin-bottom:22px;
+  }
+  .hero p.lede{
+    font-size:1.1rem;
+    color:#C7D2DE;
+    max-width:520px;
+    margin-bottom:34px;
+  }
+  .ai-tag{
+    font-family:'IBM Plex Mono',monospace; font-size:0.82rem; color:var(--amber);
+    margin-bottom:34px; display:block;
+  }
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:13px 26px;
+    border-radius:2px;
+    font-size:0.9rem;
+    text-decoration:none;
+    border:1px solid var(--amber);
+    transition:transform .15s ease;
+  }
+  .btn-solid{background:var(--amber); color:var(--navy-deep); font-weight:500;}
+  .btn-solid:hover{transform:translateY(-2px);}
+  .btn-outline{color:var(--paper); border-color:var(--steel);}
+  .btn-outline:hover{border-color:var(--paper); transform:translateY(-2px);}
+
+  /* schematic svg backdrop */
+  .schematic{
+    position:absolute; right:-40px; top:0; height:100%; width:56%;
+    opacity:0.9; z-index:1;
+  }
+  @media(max-width:820px){.schematic{display:none;}}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:88px 0;}
+  .sec-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:44px; border-bottom:1px solid var(--line); padding-bottom:18px;
+  }
+  .sec-tag{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--steel);}
+  .sec-head h2{font-size:1.7rem;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:56px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{margin-bottom:16px; max-width:62ch; color:#333;}
+  .about-photo{
+    width:100%; aspect-ratio:16/11; object-fit:cover;
+    border:1px solid var(--line); margin-bottom:18px;
+  }
+  .about-caption{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--steel); margin:-10px 0 24px;}
+  .fact-panel{
+    background:var(--navy); color:var(--paper);
+    padding:28px; border-radius:2px;
+    font-size:0.92rem;
+  }
+  .fact-row{
+    display:flex; justify-content:space-between; gap:12px;
+    padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .fact-row:last-child{border-bottom:none;}
+  .fact-row span:first-child{color:var(--steel); font-family:'IBM Plex Mono',monospace; font-size:0.78rem;}
+  .fact-row span:last-child{text-align:right;}
+
+  /* ---------- EXPERTISE ---------- */
+  .capgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);}
+  @media(max-width:760px){.capgrid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.capgrid{grid-template-columns:1fr;}}
+  .cap{background:var(--paper); padding:28px 24px;}
+  .cap h3{font-size:1.02rem; margin-bottom:8px; font-weight:600;}
+  .cap p{font-size:0.88rem; color:#4A4A4A;}
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background:var(--line);
+  }
+  .tl-item{position:relative; padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-28px; top:5px; width:11px; height:11px;
+    border-radius:50%; background:var(--amber); border:2px solid var(--paper); outline:1px solid var(--line);
+  }
+  .tl-role{font-weight:600; font-size:1.05rem;}
+  .tl-meta{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--steel); margin:4px 0 10px;}
+  .tl-item p{max-width:62ch; color:#3A3A3A; font-size:0.94rem;}
+
+  /* ---------- PROJECTS ---------- */
+  .pgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+  @media(max-width:760px){.pgrid{grid-template-columns:1fr;}}
+  .pcard{
+    border:1px solid var(--line); background:#FBFAF6;
+    padding:26px; position:relative;
+  }
+  .pcard-img{width:100%; aspect-ratio:16/10; object-fit:cover; margin-bottom:16px; border:1px solid var(--line);}
+  .pcard-row{display:flex; gap:6px; margin-bottom:16px;}
+  .pcard-row img{width:33.33%; aspect-ratio:4/3; object-fit:cover; border:1px solid var(--line);}
+  .pcard-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px;}
+  .pcard h3{font-size:1.15rem;}
+  .ptype{
+    font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--rust);
+    border:1px solid var(--rust); padding:3px 8px; white-space:nowrap;
+  }
+  .ploc{font-size:0.82rem; color:var(--steel); margin-bottom:14px;}
+  .pcard p.desc{font-size:0.92rem; color:#3A3A3A; margin-bottom:18px;}
+  .specs{display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; border-top:1px dashed var(--line); padding-top:14px;}
+  .spec-label{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--steel); text-transform:lowercase;}
+  .spec-val{font-size:0.9rem; font-weight:500;}
+
+  /* ---------- TOOLS ---------- */
+  .toolrow{display:flex; flex-wrap:wrap; gap:10px;}
+  .tool{
+    font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+    border:1px solid var(--line); padding:8px 14px; color:var(--navy);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--navy); color:var(--paper);}
+  .contact .sec-head{border-color:rgba(255,255,255,0.15);}
+  .contact .sec-tag{color:var(--steel);}
+  .contact-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px;}
+  .contact h2.big{font-size:clamp(1.8rem,4vw,2.6rem); max-width:16ch; font-family:'Fraunces',serif; font-weight:600;}
+  .contact-links{display:flex; flex-direction:column; gap:10px; font-size:0.95rem;}
+  .contact-links a{text-decoration:none; border-bottom:1px solid var(--steel); padding-bottom:2px; width:fit-content;}
+  .contact-links a:hover{border-color:var(--amber); color:var(--amber);}
+  .note{font-size:0.78rem; color:var(--steel); margin-top:6px;}
+
+  footer{
+    text-align:center; padding:26px 0; font-size:0.78rem; color:var(--steel);
+    font-family:'IBM Plex Mono',monospace; border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Dyala Alahmadieh</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="schematic" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- sun -->
+    <circle cx="410" cy="90" r="26" stroke="#E2A339" stroke-width="1.4"/>
+    <g stroke="#E2A339" stroke-width="1.4">
+      <line x1="410" y1="40" x2="410" y2="52"/>
+      <line x1="410" y1="128" x2="410" y2="140"/>
+      <line x1="360" y1="90" x2="372" y2="90"/>
+      <line x1="448" y1="90" x2="460" y2="90"/>
+      <line x1="375" y1="55" x2="383" y2="63"/>
+      <line x1="437" y1="117" x2="445" y2="125"/>
+      <line x1="445" y1="55" x2="437" y2="63"/>
+      <line x1="383" y1="117" x2="375" y2="125"/>
+    </g>
+    <!-- rays to panel -->
+    <line x1="392" y1="108" x2="300" y2="190" stroke="#7C8CA0" stroke-width="1" stroke-dasharray="3 4"/>
+    <line x1="410" y1="118" x2="330" y2="200" stroke="#7C8CA0" stroke-width="1" stroke-dasharray="3 4"/>
+    <!-- PV panel -->
+    <g stroke="#C7D2DE" stroke-width="1.2">
+      <rect x="150" y="190" width="180" height="90" transform="skewY(-6)"/>
+      <line x1="180" y1="190" x2="180" y2="280"/>
+      <line x1="210" y1="190" x2="210" y2="280"/>
+      <line x1="240" y1="190" x2="240" y2="280"/>
+      <line x1="270" y1="190" x2="270" y2="280"/>
+      <line x1="300" y1="190" x2="300" y2="280"/>
+      <line x1="150" y1="220" x2="330" y2="220" transform="skewY(-6)"/>
+      <line x1="150" y1="250" x2="330" y2="250" transform="skewY(-6)"/>
+    </g>
+    <!-- cable down to inverter -->
+    <path d="M180 292 C180 330, 230 330, 230 360" stroke="#7C8CA0" stroke-width="1.2" fill="none"/>
+    <!-- inverter box -->
+    <rect x="195" y="360" width="70" height="46" stroke="#C7D2DE" stroke-width="1.2"/>
+    <line x1="205" y1="383" x2="255" y2="383" stroke="#E2A339" stroke-width="1.2"/>
+    <text x="200" y="376" fill="#7C8CA0" font-size="9" font-family="IBM Plex Mono">INVT</text>
+    <!-- cable to building -->
+    <path d="M265 383 C310 383, 310 420, 360 420" stroke="#7C8CA0" stroke-width="1.2" fill="none"/>
+    <!-- building -->
+    <g stroke="#C7D2DE" stroke-width="1.2">
+      <rect x="360" y="360" width="90" height="100"/>
+      <line x1="360" y1="390" x2="450" y2="390"/>
+      <line x1="360" y1="420" x2="450" y2="420"/>
+      <rect x="375" y="435" width="18" height="25"/>
+      <rect x="415" y="435" width="18" height="25"/>
+    </g>
+    <text x="358" y="350" fill="#7C8CA0" font-size="9" font-family="IBM Plex Mono">LOAD</text>
+    <!-- dimension line -->
+    <line x1="150" y1="490" x2="450" y2="490" stroke="#7C8CA0" stroke-width="1"/>
+    <line x1="150" y1="484" x2="150" y2="496" stroke="#7C8CA0" stroke-width="1"/>
+    <line x1="450" y1="484" x2="450" y2="496" stroke="#7C8CA0" stroke-width="1"/>
+    <text x="270" y="480" fill="#7C8CA0" font-size="9" font-family="IBM Plex Mono">PV — INVERTER — LOAD</text>
+  </svg>
+
+  <div class="wrap">
+    <img class="hero-avatar" src="assets/dyala-profile.png" alt="Dyala Alahmadieh on a rooftop solar installation">
+    <div class="hero-eyebrow">PROFESSIONAL · END-TO-END · FASTEST PATH TO SOLAR</div>
+    <h1>Bring the sun into your socket.</h1>
+    <p class="lede">From feasibility to commissioning — solar systems designed and delivered the professional, fastest way.</p>
+    <span class="ai-tag">✦ Backed by AI-enhanced workflows for faster, leaner delivery.</span>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-solid">View projects</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">01 — about</span><h2>Background</h2></div>
+    <div class="about-grid">
+      <div>
+        <img class="about-photo" src="assets/dyala-fieldwork.png" alt="Dyala Alahmadieh commissioning an inverter and battery system on site">
+        <div class="about-caption">on site — inverter &amp; battery commissioning</div>
+        <p>I hold a Master's degree in Microgrid Control enhanced with AI methods, and I've worked across the full spectrum of solar — from A to Z — with clients across multiple countries throughout the Middle East. That end-to-end exposure gives me a complete frame for solar projects: I've been hands-on through every single step of the design and delivery cycle, from feasibility and PV sizing through PVsyst/HelioScope/HOMER simulation, electrical SLDs, BoQs, and site execution.</p>
+        <p>My most recent role has been as a Senior After-Sales Engineer, resolving critical technical escalations on residential and commercial solar systems. Before that, I worked as an Electrical Design Engineer, developing low-voltage electrical designs and single-line diagrams. All projects shown here were delivered by me as the design engineer for various solar/EPC companies across the region — client and company identities are withheld for confidentiality.</p>
+      </div>
+      <div class="fact-panel">
+        <div class="fact-row"><span>based in</span><span>Lebanon</span></div>
+        <div class="fact-row"><span>education</span><span>M.Sc. Microgrid Control (AI-enhanced)</span></div>
+        <div class="fact-row"><span>reach</span><span>Multi-country, Middle East</span></div>
+        <div class="fact-row"><span>focus</span><span>PV design · hybrid systems · SLDs</span></div>
+        <div class="fact-row"><span>simulation</span><span>PVsyst · HelioScope · HOMER</span></div>
+        <div class="fact-row"><span>drafting</span><span>CAD / single-line diagrams</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">02 — expertise</span><h2>What I do</h2></div>
+    <div class="capgrid">
+      <div class="cap"><h3>PV system design &amp; sizing</h3><p>Array configuration, string sizing, tilt and orientation, and capacity planning against real load and irradiance data.</p></div>
+      <div class="cap"><h3>PVsyst &amp; HelioScope simulation</h3><p>Yield modelling, loss diagrams, performance ratio analysis, and P50/P90 production probability.</p></div>
+      <div class="cap"><h3>Single-line &amp; electrical diagrams</h3><p>Full electrical distribution drawings for PV, hybrid, and battery-backed systems, ready for site execution.</p></div>
+      <div class="cap"><h3>Hybrid PV-diesel &amp; battery systems</h3><p>Fuel-saving controller integration, multi-inverter interfacing (Modbus/Ethernet), and generator load coordination.</p></div>
+      <div class="cap"><h3>Structural mounting design</h3><p>Galvanized steel racking layouts sized to site geometry, wind, and snow load requirements.</p></div>
+      <div class="cap"><h3>BoQ &amp; cost estimation</h3><p>Bills of quantities, component specification, and cabling schedules for accurate bid preparation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">03 — experience</span><h2>Career path</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-role">Senior After Sales Engineer</div>
+        <div class="tl-meta">Solis</div>
+        <p>Supporting technical aspects of residential and commercial solar PV systems, performing remote diagnostics, and coordinating with international teams to resolve field issues.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Electrical Design Engineer</div>
+        <div class="tl-meta">Design Projects, Lebanon</div>
+        <p>Developed low-voltage electrical designs and drafted detailed single-line diagrams for a range of commercial and institutional projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">04 — selected work</span><h2>Projects</h2></div>
+    <p style="font-size:0.85rem; color:var(--steel); max-width:62ch; margin:-24px 0 34px;">Delivered as design engineer for various solar/EPC companies across the region. Client and company identities are withheld for confidentiality.</p>
+    <div class="pgrid">
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Technica International SAL</h3><span class="ptype">industrial hybrid</span></div>
+        <div class="ploc">Lebanon — PV-diesel retrofit</div>
+        <p class="desc">Extended an existing on-grid PV-diesel installation to reduce generator loading, integrating two Fronius inverter models (Symo &amp; Tauro) across sites 90m apart via Modbus and Ethernet, alongside a fuel-saving controller.</p>
+        <div class="specs">
+          <div><div class="spec-label">system size</div><div class="spec-val">169 kWp added</div></div>
+          <div><div class="spec-label">panels</div><div class="spec-val">308 modules</div></div>
+          <div><div class="spec-label">simulated yield</div><div class="spec-val">293 MWh / year</div></div>
+          <div><div class="spec-label">performance ratio</div><div class="spec-val">80.6%</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Beit Misk Residence</h3><span class="ptype">grid-connected</span></div>
+        <div class="ploc">El Aatchâné, Lebanon</div>
+        <p class="desc">Full grid-connected PV system design with PVsyst yield simulation, fixed-tilt array orientation, and inverter selection sized to the site's roof geometry.</p>
+        <div class="specs">
+          <div><div class="spec-label">system size</div><div class="spec-val">119 kWp</div></div>
+          <div><div class="spec-label">panels</div><div class="spec-val">198 modules</div></div>
+          <div><div class="spec-label">simulated yield</div><div class="spec-val">201.5 MWh / year</div></div>
+          <div><div class="spec-label">performance ratio</div><div class="spec-val">81.9%</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Sahlet Al May School</h3><span class="ptype">institutional</span></div>
+        <div class="ploc">American International School</div>
+        <p class="desc">Solar single-line diagram for a battery-backed system, integrating lithium BMS storage, DC/AC protection, surge arrestors, and existing earth systems across four independent inverter groups feeding the school's main board.</p>
+        <div class="specs">
+          <div><div class="spec-label">panel rating</div><div class="spec-val">550W mono, Class A</div></div>
+          <div><div class="spec-label">storage</div><div class="spec-val">Lithium battery + BMS</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Universal College of Alley</h3><span class="ptype">structural design</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">Steel mounting structure layout for a rooftop array, coordinating panel block dimensions and clearances against existing rooftop obstructions and orientation.</p>
+        <div class="specs">
+          <div><div class="spec-label">deliverable</div><div class="spec-val">Structural drawing</div></div>
+          <div><div class="spec-label">material</div><div class="spec-val">Galvanized steel</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Mkalles Distribution</h3><span class="ptype">panel layout</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">Rooftop panel layout and string distribution plan, arranging modules around a rooftop obstruction while preserving orientation and row spacing.</p>
+        <div class="specs">
+          <div><div class="spec-label">array</div><div class="spec-val">78 panels / 560W</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Residential Hybrid System</h3><span class="ptype">hybrid off-grid</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">Specification and bill of quantities for a residential hybrid solar installation combining PV generation, battery storage, and a hybrid inverter for backup power.</p>
+        <div class="specs">
+          <div><div class="spec-label">system size</div><div class="spec-val">23.6 kWp</div></div>
+          <div><div class="spec-label">components</div><div class="spec-val">PV + hybrid inverter + battery</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-row">
+          <img src="assets/project-rooftop-array.png" alt="Installed rooftop solar array">
+          <img src="assets/project-rooftop-render.png" alt="3D design render of rooftop array">
+          <img src="assets/project-inverter-room.png" alt="Inverter and battery room">
+        </div>
+        <div class="pcard-top"><h3>Large-Scale Rooftop Array</h3><span class="ptype">commercial rooftop</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">End-to-end delivery of a large commercial rooftop system: 3D layout modelling, full installation across an industrial roof, and a multi-inverter room with battery storage for the hybrid setup.</p>
+        <div class="specs">
+          <div><div class="spec-label">scope</div><div class="spec-val">Design → install → commissioning</div></div>
+          <div><div class="spec-label">system type</div><div class="spec-val">Hybrid, multi-inverter</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <img class="pcard-img" src="assets/wiring-layout.png" alt="Rooftop PV string wiring and combiner box layout">
+        <div class="pcard-top"><h3>Rooftop Wiring &amp; Combiner Design</h3><span class="ptype">electrical layout</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">Colour-coded string wiring layout for a large multi-roof commercial array, routing each string to its combiner box and mapping the full DC collection network before installation.</p>
+        <div class="specs">
+          <div><div class="spec-label">deliverable</div><div class="spec-val">String wiring layout</div></div>
+          <div><div class="spec-label">infrastructure</div><div class="spec-val">Multiple combiner boxes</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <img class="pcard-img" src="assets/control-panel.png" alt="Automatic control panel wiring diagram">
+        <div class="pcard-top"><h3>Automatic Control Panel</h3><span class="ptype">control &amp; protection</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">Control panel design for automatic grid/generator switching, combining current-transformer metering, a phase relay, surge protection, and a scheduled timer for unattended operation.</p>
+        <div class="specs">
+          <div><div class="spec-label">protection</div><div class="spec-val">Surge arrestor, micro fuses</div></div>
+          <div><div class="spec-label">control</div><div class="spec-val">CT metering + phase relay + timer</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Utility-Scale Solar Plant</h3><span class="ptype">ground-mount</span></div>
+        <div class="ploc">Homs region</div>
+        <p class="desc">Electrical single-line design for a utility-scale ground-mount plant, distributing multiple inverter groups through an AC totalizer into dual step-up transformers, with a dedicated lightning protection mast and grounding system.</p>
+        <div class="specs">
+          <div><div class="spec-label">capacity</div><div class="spec-val">2.4 MWp</div></div>
+          <div><div class="spec-label">panels</div><div class="spec-val">4,080 × 620 Wp</div></div>
+          <div><div class="spec-label">transformers</div><div class="spec-val">2 × 1,600 kVA</div></div>
+          <div><div class="spec-label">protection</div><div class="spec-val">Lightning mast + earthing</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Hospital Critical-Power Hybrid</h3><span class="ptype">fuel-saving hybrid</span></div>
+        <div class="ploc">Lebanon</div>
+        <p class="desc">Single-line design integrating solar generation with dual diesel generators and the utility grid to secure critical hospital loads, using genset controllers for automatic transfer and fuel-saving coordination.</p>
+        <div class="specs">
+          <div><div class="spec-label">inverters</div><div class="spec-val">110 kW Sungrow, on-grid</div></div>
+          <div><div class="spec-label">panels</div><div class="spec-val">DAH 550W mono</div></div>
+          <div><div class="spec-label">control</div><div class="spec-val">DEIF genset controllers</div></div>
+          <div><div class="spec-label">sources</div><div class="spec-val">PV + 2 generators + grid</div></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><h3>Rooftop Layout &amp; Foundation Design</h3><span class="ptype">layout &amp; structural</span></div>
+        <div class="ploc">Beirut, Lebanon</div>
+        <p class="desc">Panel layout planning for rooftop sites across Beirut, including a preliminary south-facing section study, paired with concrete foundation base detailing for ground-mount racking structures.</p>
+        <div class="specs">
+          <div><div class="spec-label">deliverables</div><div class="spec-val">Panel layout + foundation detail</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">05 — tools</span><h2>Software &amp; standards</h2></div>
+    <div class="toolrow">
+      <span class="tool">PVsyst</span>
+      <span class="tool">HelioScope</span>
+      <span class="tool">HOMER</span>
+      <span class="tool">AutoCAD</span>
+      <span class="tool">Fronius Solar.web</span>
+      <span class="tool">Modbus / SunSpec</span>
+      <span class="tool">Circutor fuel-saving control</span>
+      <span class="tool">IEC 61215 / 61730</span>
+      <span class="tool">Single-line diagrams (SLD)</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">06 — contact</span><h2 style="color:var(--paper);">Get in touch</h2></div>
+    <div class="contact-grid">
+      <h2 class="big">Have a solar or electrical design project in mind?</h2>
+      <div class="contact-links">
+        <a href="mailto:dyalaalahmadieh@gmail.com">dyalaalahmadieh@gmail.com</a>
+        <a href="https://www.linkedin.com/in/dyala-alahmadieh-5781bb183" target="_blank" rel="noopener">linkedin.com/in/dyala-alahmadieh</a>
+        <a href="tel:+96171496869">+961 71 496 869</a>
+        <a href="tel:+96374202388">+963 74 202 388</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Dyala Alahmadieh — Solar &amp; Electrical Design Engineer</footer>
+
+</body>
+</html>
